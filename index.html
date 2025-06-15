@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://accounts.google.com/gsi/client"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            align-self: center;
+            border-radius: 10px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 2 3px 10px #14ea83;
+            border: 2px solid #29f366;
+            align-self: center;
+        }
+         input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #29f366;
+            border-radius: 20px;
+            align-self: center;
+        }
+        
+        button {
+            padding: 10px 15px;
+            width: 100%;
+            background-color: #3318cb;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            align-self: center;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid black;
+            align-self: center;
+        }
+        </style>
+</head>
+<body>
+   <div class="container">
+        <img src="Screenshot_8-6-2025_135122_.jpeg" alt="conpany logo Image" style="width: 250px; height: 50px;">
+        <form action="login.php" method="post">
+            <input type="text" name="identifier" placeholder="username,email address,mobile number" required><br>
+            <input type="password" name="password" placeholder="Enter your password" required><br>
+            <button type="submit">Login</button>
+        </form>
+        <div class="divider">
+         
+        <span style="color: black; font-weight: bold;">OR</span>
+        </div> <div class="forgot-password" style="text-align: center; margin-top: 10px;">
+        <a href= "forgot_password.php" style="text-decoration: none; color: black; font-weight: lighter;">Forgot your password?</a></div><br>
+        <div id="g_id_onload"
+       data-client_id=""
+       data-login_uri=""
+       data-auto_prompt="false">
+  </div>
+  <div class="g_id_signin" data-type="standard"></div>
+        <div class="signup" style="text-align: center; margin-top: 10px;">
+        <a href="signup.html" style="text-decoration: none; color: rgb(76, 38, 211); font-weight: lighter;">Don't have an account? Sign up</a></div>
+             
+   </div>
+    
+         
+</html>

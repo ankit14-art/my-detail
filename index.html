@@ -1,94 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://accounts.google.com/gsi/client"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-        img {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            align-self: center;
-            border-radius: 10px;
-        }
-        .container {
-            max-width: 500px;
-            margin: auto;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 2 3px 10px #14ea83;
-            border: 2px solid #29f366;
-            align-self: center;
-        }
-         input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #29f366;
-            border-radius: 20px;
-            align-self: center;
-        }
-        
-        button {
-            padding: 10px 15px;
-            width: 100%;
-            background-color: #3318cb;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            align-self: center;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 20px 0;
-        }
-        .divider::before,
-        .divider::after {
-            content: "";
-            flex: 1;
-            border-bottom: 1px solid black;
-            align-self: center;
-        }
-        </style>
+  <meta charset="UTF-8" />
+  <title>Ankit | Animated Photo Page</title>
+  <style>
+    :root {
+      --bg-color: #111;
+      --text-color: #fff;
+      --btn-bg: #111;
+      --btn-text: #fff;
+      --btn-hover: #222;
+    }
+
+    body.light {
+      --bg-color: #f4f4f4;
+      --text-color: #111;
+      --btn-bg: #fff;
+      --btn-text: #111;
+      --btn-hover: #ddd;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg-color);
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--text-color);
+      text-align: center;
+      transition: 0.3s ease-in-out;
+    }
+
+    header {
+      background: var(--bg-color);
+      color: var(--text-color);
+      padding: 10px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 10px;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border: 1px solid var(--btn-text);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: var(--btn-hover);
+      transform: scale(1.05);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .box {
+      width: 400px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px auto;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      text-align: left;
+    }
+
+    h2 {
+      color: #38bdf8;
+      margin-bottom: 30px;
+    }
+
+    /* 🌟 Animated Photo */
+    .animated-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 4px solid #38bdf8;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.7);
+      animation: float 3s ease-in-out infinite, rotateGlow 10s linear infinite;
+      object-fit: cover;
+      margin: 30px auto;
+      display: block;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes rotateGlow {
+      0% { box-shadow: 0 0 20px rgba(56, 189, 248, 0.7); }
+      50% { box-shadow: 0 0 40px rgba(56, 189, 248, 1); }
+      100% { box-shadow: 0 0 20px rgba(56, 189, 248, 0.7); }
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      overflow: hidden;
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 20px;
+      transition: transform 0.4s ease-in-out;
+      touch-action: pan-y;
+    }
+
+    .card {
+      flex: 0 0 260px;
+      height: 320px;
+      background: #1e293b;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 30px;
+      transition: transform 0.4s, filter 0.4s, opacity 0.4s;
+      transform: scale(0.85);
+      filter: blur(2px);
+      opacity: 0.5;
+    }
+
+    .card.active {
+      transform: scale(1);
+      filter: none;
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(#22d3ee, transparent, #0ea5e9, transparent, #22d3ee);
+      animation: rotate 6s linear infinite;
+      z-index: 1;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      bottom: 6px;
+      border-radius: 16px;
+      background: var(--bg-color);
+      z-index: 2;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .card img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border: 2px solid #38bdf8;
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      margin: 5px 0;
+      font-size: 18px;
+    }
+
+    .buy-btn {
+      margin: 10px auto 0 auto;
+      padding: 8px 18px;
+      background: #22d3ee;
+      color: #0f172a;
+      font-weight: bold;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      display: block;
+    }
+
+    .buy-btn:hover {
+      background: #0ea5e9;
+    }
+
+    .nav-buttons {
+      margin-top: 20px;
+    }
+
+    .nav-buttons button {
+      background: #22d3ee;
+      color: #0f172a;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .nav-buttons button:hover {
+      background: #0ea5e9;
+    }
+
+    #cart {
+      margin-top: 30px;
+      font-size: 18px;
+      color: #38bdf8;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
-   <div class="container">
-        <img src="Screenshot_8-6-2025_135122_.jpeg" alt="conpany logo Image" style="width: 250px; height: 50px;">
-        <form action="login.php" method="post">
-            <input type="text" name="identifier" placeholder="username,email address,mobile number" required><br>
-            <input type="password" name="password" placeholder="Enter your password" required><br>
-            <button type="submit">Login</button>
-        </form>
-        <div class="divider">
-         
-        <span style="color: black; font-weight: bold;">OR</span>
-        </div> <div class="forgot-password" style="text-align: center; margin-top: 10px;">
-        <a href= "forgot_password.php" style="text-decoration: none; color: black; font-weight: lighter;">Forgot your password?</a></div><br>
-        <div id="g_id_onload"
-       data-client_id=""
-       data-login_uri=""
-       data-auto_prompt="false">
+
+<header>
+  <h1 class="welcome" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">WELCOME BACK!</h1>
+  <div class="container" style="justify-content: right;">
+    <button onclick="toggleTheme()">☀🔛🌙</button>
+    <button onclick="importScripts()">📞</button>
+    <button onclick="locationReload()">🏡</button>
+    <button onclick="aboutus()">ABOUT ME</button>
   </div>
-  <div class="g_id_signin" data-type="standard"></div>
-        <div class="signup" style="text-align: center; margin-top: 10px;">
-        <a href="signup.html" style="text-decoration: none; color: rgb(76, 38, 211); font-weight: lighter;">Don't have an account? Sign up</a></div>
-             
-   </div>
-    
-         
+</header>
+
+<!-- 🔥 Animated Photo Section -->
+<img src="ankit-cofounder.jpg" alt="Ankit Choudhary" class="animated-photo" />
+
+<div class="box">
+  <h1 class="name" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-weight: bold;">MR. ANKIT CHOUDHARY</h1>
+</div>
+
+<h2>SOCIAL MEDIA ACCOUNTS</h2>
+
+<div class="carousel-wrapper" id="carouselWrapper">
+  <div class="carousel-track" id="carouselTrack">
+    <div class="card active">
+      <div class="card-content">
+        <img src="instagramprofile pic.jpg" alt="instagram" />
+        <h3>CONTACT ON INSTAGRAM</h3>
+        <button class="buy-btn" onclick="contactinstagram('INSTAGRAM')">Visit</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <img src="linkedin profile pic.jpeg" alt="linkedin" />
+        <h3>CONTACT ON LINKEDIN</h3>
+        <button class="buy-btn" onclick="contactlinkedin('LINKEDIN')">Visit</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <img src="facebookprofilepic.jpg" alt="FACEBOOK" />
+        <h3>CONTACT ON FACEBOOK</h3>
+        <button class="buy-btn" onclick="contactfacebook('FACEBOOK')">Visit</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <img src="telegramprofilepic.jpg" alt="telegram" />
+        <h3>CONTACT ON TELEGRAM</h3>
+        <button class="buy-btn" onclick="contacttelegram('TELEGRAM')">Visit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="nav-buttons">
+  <button onclick="prevSlide()">⬅ Prev</button>
+  <button onclick="nextSlide()">Next ➡</button>
+</div>
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle('light');
+  }
+  function importScripts() {
+    window.location.href = "tel:+919509627229";
+  }
+  function locationReload() {
+    window.location.reload();
+  }
+  function aboutus() {
+    window.location.href = "aboutus.html";
+  }
+
+  const track = document.getElementById('carouselTrack');
+  const cards = track.querySelectorAll('.card');
+  let current = 0;
+
+  function updatePosition() {
+    const cardWidth = cards[0].offsetWidth + 20;
+    const wrapper = document.getElementById('carouselWrapper').offsetWidth;
+    const offset = (wrapper / 2) - (cardWidth / 2) - (current * cardWidth);
+    track.style.transform = `translateX(${offset}px)`;
+    cards.forEach((card, i) => {
+      card.classList.toggle('active', i === current);
+    });
+  }
+
+  function nextSlide() {
+    current = (current + 1) % cards.length;
+    updatePosition();
+  }
+
+  function prevSlide() {
+    current = (current - 1 + cards.length) % cards.length;
+    updatePosition();
+  }
+
+  function contactinstagram(item) {
+    window.location.href = "https://www.instagram.com/ankit_choudhary_.0";
+    alert("Do you want to contact me on " + item + "?");
+  }
+  function contactlinkedin(item) {
+    window.location.href = "https://www.linkedin.com/in/ankit-choudhary-27a795362";
+    alert("Do you want to contact me on " + item + "?");
+  }
+  function contactfacebook(item) {
+    window.location.href = "https://www.facebook.com/share/1BqiRVDyDn/";
+    alert("Do you want to contact me on " + item + "?");
+  }
+  function contacttelegram(item) {
+    window.location.href = "https://t.me/ankit_choudhary156";
+    alert("Do you want to contact me on " + item + "?");
+  }
+
+  setInterval(nextSlide, 4000);
+
+  let startX = 0;
+  track.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
+  track.addEventListener("touchend", (e) => {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) nextSlide();
+    else if (endX - startX > 50) prevSlide();
+  });
+
+  window.addEventListener("load", updatePosition);
+  window.addEventListener("resize", updatePosition);
+</script>
+
+</body>
 </html>

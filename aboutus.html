@@ -1,0 +1,179 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Me - Ankit Choudhary</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: #f1f5f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .about-container {
+      background: linear-gradient(145deg, #1e293b, #0f172a);
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 700px;
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.1);
+      animation: fadeIn 1.5s ease-in-out;
+      position: relative;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #38bdf8;
+      position: relative;
+    }
+
+    h1::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      height: 3px;
+      width: 60px;
+      background: #22d3ee;
+      animation: underline 1s ease forwards;
+    }
+
+    @keyframes underline {
+      0% { width: 0; }
+      100% { width: 60px; }
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.7;
+      margin: 10px 0;
+    }
+
+    .skills {
+      margin-top: 20px;
+    }
+
+    .skills span {
+      background: #1e40af;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin: 4px;
+      display: inline-block;
+      transition: transform 0.3s ease;
+      cursor: default;
+    }
+
+    .skills span:hover {
+      transform: scale(1.1);
+      background: #3b82f6;
+    }
+
+    .contact {
+      margin-top: 30px;
+    }
+
+    .contact a {
+      color: #38bdf8;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact a:hover {
+      color: #22d3ee;
+    }
+     .instagram-btn {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(45deg, #feda75, #d62976, #962fbf, #4f5bd5);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 20px;
+    font-size: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255, 0, 150, 0.3);
+  }
+
+  .instagram-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 30px rgba(255, 0, 150, 0.5);
+  }
+
+  .instagram-btn svg {
+    margin-right: 10px;
+    fill: white;
+  }
+  .email-btn {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(45deg, #34d399, #10b981);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+  }
+
+  .email-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 30px rgba(16, 185, 129, 0.5);
+  }
+
+  .email-btn svg {
+    margin-right: 10px;
+    fill: white;
+  }
+  </style>
+</head>
+<body>
+  <div class="about-container">
+    <h1>About Me</h1>
+    <p>Hello! I’m <strong>Ankit Choudhary</strong>, a passionate creator who loves working with modern design, animation, and web development.</p>
+    <p>I focus on building responsive and eye-catching interfaces that are both user-friendly and technically sound. I bring life to ideas using creative layouts, subtle animations, and clean code.</p>
+
+    <div class="skills">
+      <strong>Skills:</strong><br />
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>JavaScript</span>
+      <span>C Language</span>
+      <span>Video Edite</span>
+      <span>UI/UX Design</span>
+      <span>Animation</span>
+    </div>
+
+    <div class="contact">
+       <a class="instagram-btn" href="https://instagram.com/ankit_choudhary_.0" target="_blank">
+  <svg width="20" height="20" viewBox="0 0 24 24">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.344 3.608 1.32.975.975 1.258 2.242 1.32 3.608.058 1.266.07 1.646.07 4.84 0 3.204-.012 3.584-.07 4.85-.062 1.366-.344 2.633-1.32 3.608-.975.975-2.242 1.258-3.608 1.32-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.344-3.608-1.32-.975-.975-1.258-2.242-1.32-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.344-2.633 1.32-3.608.975-.975 2.242-1.258 3.608-1.32C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.748.131 4.574.443 3.533 1.484 2.492 2.525 2.18 3.699 2.121 5.003.063 6.283.05 6.693.05 12s.013 5.717.072 6.997c.059 1.304.371 2.478 1.412 3.519 1.041 1.041 2.215 1.353 3.519 1.412C8.283 23.937 8.693 23.95 14 23.95s5.717-.013 6.997-.072c1.304-.059 2.478-.371 3.519-1.412 1.041-1.041 1.353-2.215 1.412-3.519C23.937 17.717 23.95 17.307 23.95 12s-.013-5.717-.072-6.997c-.059-1.304-.371-2.478-1.412-3.519C21.425.443 20.251.131 18.947.072 17.668.013 17.259 0 14 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/>
+  </svg>
+  @ankit_choudhary_.0
+</a><br>
+<a class="email-btn" href="mailto:ankitchoudhary16x2@gmail.com">
+  <svg width="20" height="20" viewBox="0 0 24 24">
+    <path d="M12 13.065L.46 6.418A1 1 0 0 1 1.07 5h21.86a1 1 0 0 1 .61 1.418L12 13.065zM1 7.862v10.276A1.862 1.862 0 0 0 2.862 20h18.276A1.862 1.862 0 0 0 23 18.138V7.862l-10.553 6.25a1.5 1.5 0 0 1-1.894 0L1 7.862z"/>
+  </svg>
+  Email Me: ankitchoudhary16x2@gmail.com
+</a>
+    </div>
+  </div>
+</body>
+</html>

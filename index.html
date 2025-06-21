@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Ankit | Animated Photo Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-color: #111;
@@ -23,7 +24,7 @@
     body {
       margin: 0;
       background: var(--bg-color);
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Poppins', sans-serif;
       color: var(--text-color);
       text-align: center;
       transition: 0.3s ease-in-out;
@@ -33,6 +34,13 @@
       background: var(--bg-color);
       color: var(--text-color);
       padding: 10px;
+      font-family: 'Poppins', sans-serif;
+    }
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      color: #00f2ff;
+      text-shadow: 0 0 8px #00f2ff66;
     }
 
     .container {
@@ -230,6 +238,136 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
+    .slider-container {
+      position: relative;
+      width: 1000px;
+      max-width: 1000px;
+      height: 220px;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease;
+      gap: 40px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .skill {
+      width: 150px;
+      height: 150px;
+      position: relative;
+      opacity: 0.4;
+      filter: blur(2px);
+      transform: scale(0.85);
+      transition: all 0.5s ease;
+    }
+
+    .skill.active {
+      opacity: 1;
+      filter: none;
+      transform: scale(1.1);
+    }
+
+    .outer-ring {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: conic-gradient(#00f2ff var(--percent), #222 var(--percent));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: rotate 6s linear infinite;
+      box-shadow: 0 0 20px #00f2ff66;
+    }
+
+    .inner-ring {
+      width: 120px;
+      height: 120px;
+      background: #111;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: inset 0 0 10px #00f2ff33;
+      text-align: center;
+    }
+
+    .skill h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 18px;
+      color: #00f2ff;
+    }
+
+    .skill p {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .buttons {
+      margin: 20px auto;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .buttons button {
+      padding: 10px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      background-color: #00f2ff;
+      color: #000;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      text-transform: uppercase;
+      box-shadow: 0 0 10px #00f2ff88;
+    }
+
+    .buttons button:hover {
+      background: #00cbe2;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 0.95rem;
+      }
+      .slider-container {
+        height: 180px;
+      }
+      .skill {
+        width: 120px;
+        height: 120px;
+      }
+      .inner-ring {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    .my-skills {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
@@ -289,6 +427,30 @@
 <div class="nav-buttons">
   <button onclick="prevSlide()">⬅ Prev</button>
   <button onclick="nextSlide()">Next ➡</button>
+</div><br>
+<div class="my-skills" style="font-family: 'Poppins', sans-serif;">
+  <h1 style="font-family: 'Poppins', sans-serif;">My Skills</h1>
+  <p>I have developed a wide range of skills in front-end and back-end development. Here's a quick visual representation of my proficiency in different technologies I work with every day.</p>
+</div>
+
+
+<audio id="slideSound" src="https://www.soundjay.com/buttons/sounds/button-09.mp3" preload="auto"></audio>
+
+<div class="slider-container" id="sliderContainer">
+  <div class="slider" id="slider">
+    <div class="skill" style="--percent: 85%;"><div class="outer-ring"><div class="inner-ring"><h3>HTML</h3><p>75%</p></div></div></div>
+    <div class="skill" style="--percent: 70%;"><div class="outer-ring"><div class="inner-ring"><h3>CSS</h3><p>60%</p></div></div></div>
+    <div class="skill" style="--percent: 60%;"><div class="outer-ring"><div class="inner-ring"><h3>JavaScript(basic)</h3><p>50%</p></div></div></div>
+    <div class="skill" style="--percent: 90%;"><div class="outer-ring"><div class="inner-ring"><h3>C Language</h3><p>80%</p></div></div></div>
+    <div class="skill" style="--percent: 75%;"><div class="outer-ring"><div class="inner-ring"><h3>Video Edit</h3><p>75%</p></div></div></div>
+    <div class="skill" style="--percent: 65%;"><div class="outer-ring"><div class="inner-ring"><h3>UI/UX Design</h3><p>60%</p></div></div></div>
+    <div class="skill" style="--percent: 80%;"><div class="outer-ring"><div class="inner-ring"><h3>Animation</h3><p>70%</p></div></div></div>
+  </div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevSkill()">prev</button>
+  <button onclick="nextSkill()">next</button>
 </div>
 <script>
   function toggleTheme() {
@@ -347,18 +509,77 @@
 
   setInterval(nextSlide, 4000);
 
-  let startX = 0;
+  let carouselStartX = 0;
   track.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
+    carouselStartX = e.touches[0].clientX;
   });
   track.addEventListener("touchend", (e) => {
     const endX = e.changedTouches[0].clientX;
-    if (startX - endX > 50) nextSlide();
-    else if (endX - startX > 50) prevSlide();
+    if (carouselStartX - endX > 50) nextSlide();
+    else if (endX - carouselStartX > 50) prevSlide();
   });
 
   window.addEventListener("load", updatePosition);
   window.addEventListener("resize", updatePosition);
+</script>
+<script>
+  const slider = document.getElementById('slider');
+  const sliderContainer = document.getElementById('sliderContainer');
+  const skills = document.querySelectorAll('.skill');
+  const sound = document.getElementById('slideSound');
+  let activeIndex = 0;
+  let autoSlideInterval;
+
+  function updateView(playSound = true) {
+    skills.forEach((skill, index) => {
+      skill.classList.remove('active');
+      if (index === activeIndex) {
+        skill.classList.add('active');
+      }
+    });
+    const skillWidth = skills[0].offsetWidth + 40;
+    const centerOffset = (skills.length / 2 - activeIndex) * skillWidth;
+    slider.style.transform = `translateX(${centerOffset}px) translate(-50%, -50%)`;
+    if (playSound) sound.play();
+  }
+
+  function nextSkill() {
+    activeIndex = (activeIndex + 1) % skills.length;
+    updateView();
+  }
+
+  function prevSkill() {
+    activeIndex = (activeIndex - 1 + skills.length) % skills.length;
+    updateView();
+  }
+
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(nextSkill, 4000);
+  }
+
+  function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+  }
+
+  let startX = 0;
+  sliderContainer.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    stopAutoSlide();
+  });
+
+  sliderContainer.addEventListener('touchend', e => {
+    const diff = e.changedTouches[0].clientX - startX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? prevSkill() : nextSkill();
+    }
+    startAutoSlide();
+  });
+
+  sliderContainer.addEventListener('mouseenter', stopAutoSlide);
+  sliderContainer.addEventListener('mouseleave', startAutoSlide);
+
+  updateView(false);
+  startAutoSlide();
 </script>
 
 </body>
